@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "target": "ES2018",
+        "module": "ESNext",
+        "moduleResolution": "node16",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "lib": [
+            "DOM",
+            "ES2018"
+        ],
+        "jsx": "preserve",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": false,
+        "strict": false,
+        "skipLibCheck": true,
+        "declaration": true,
+        "declarationMap": true,
+        "isolatedModules": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        }
+    },
+    "include": [
+        "src/index.ts",
+        "src/**/*.ts",
+        "src/**/*.vue"
+, "src/hooks/useCloseSuggestionMenuNoItems.js", "src/hooks/useSuggestionMenuKeyboardNavigation.js", "src/hooks/useUIElementPositioning.js"    ]
+}

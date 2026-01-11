@@ -1,0 +1,25 @@
+{
+    "name": "ai-input",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev2": "pnpm -F demo-vue2 dev",
+        "dev3": "pnpm -F demo-vue3 dev",
+        "build:watch1": "pnpm -F @shenjipo/mention-editor run build:watch",
+        "build:watch2": "pnpm -F @shenjipo/mention-vue2 build:watch",
+        "build:watch3": "pnpm -F @shenjipo/mention-vue3 build:watch",
+        "build": "pnpm -F @shenjipo/mention-editor run build && pnpm -F @shenjipo/mention-vue2 build && pnpm -F @shenjipo/mention-vue3 build",
+        "pub-editor": "pnpm publish -F @shenjipo/mention-editor",
+        "pub-vue2": "pnpm publish --recursive -F @shenjipo/mention-vue2",
+        "pub-vue3": "pnpm publish --recursive -F @shenjipo/mention-vue3"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.10.0",
+    "dependencies": {
+        "tsup": "8.3.5",
+        "typescript": "5.6.3"
+    }
+}
