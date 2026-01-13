@@ -1,6 +1,6 @@
 
 import { useFloating, autoUpdate, type UseFloatingOptions, } from '@floating-ui/vue'
-import { ref, computed, watch, onUnmounted } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 type VirtualReference = {
     getBoundingClientRect: () => DOMRect
