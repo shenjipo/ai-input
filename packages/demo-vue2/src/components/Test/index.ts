@@ -3,6 +3,7 @@ import MEditorVue2 from "@shenjipo/mention-vue2"
 import "@shenjipo/mention-vue2/dist/index.css"
 import { Message } from "element-ui"
 import SlashMention from "../SlashMention/index.vue"
+import type { MEditorVue2Type } from "@shenjipo/mention-vue2/types"
 
 @Component({
     components: {
@@ -19,12 +20,12 @@ export default class Test extends Vue {
         url: string
     }> = []
     $refs: {
-        editorRef: MEditorVue2
+        editorRef: MEditorVue2Type
     }
 
 
     mounted() {
-
+        this.$refs.editorRef.clear()
     }
 
     created() {
@@ -55,7 +56,7 @@ export default class Test extends Vue {
     }
 
     handleFileReject(file: File) {
-       
+
         Message.error(`暂不持支持 ${file.name} 的文件格式!`)
     }
 }

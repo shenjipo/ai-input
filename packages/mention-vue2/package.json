@@ -1,6 +1,7 @@
 {
     "name": "@shenjipo/mention-vue2",
-    "version": "2.3.0",
+    "version": "2.4.0",
+    "type": "module",
     "main": "dist/index.cjs.js",
     "module": "dist/index.esm.js",
     "types": "dist/index.d.ts",
@@ -11,7 +12,10 @@
             "require": "./dist/index.cjs.js",
             "types": "./dist/index.d.ts"
         },
-        "./dist/index.css": "./dist/index.css"
+        "./dist/index.css": "./dist/index.css",
+        "./types": {
+            "types": "./dist/types/index.d.ts"
+        }
     },
     "scripts": {
         "dev": "vite",

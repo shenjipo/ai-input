@@ -28,5 +28,5 @@
         "src/index.ts",
         "src/**/*.ts",
         "src/**/*.vue"
-, "src/hooks/useCloseSuggestionMenuNoItems.js", "src/hooks/useSuggestionMenuKeyboardNavigation.js", "src/hooks/useUIElementPositioning.js"    ]
+    ]
 }
