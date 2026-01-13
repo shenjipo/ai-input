@@ -22,8 +22,12 @@ export default defineConfig({
     build: {
         lib: {
             entry: path.resolve(__dirname, 'src/index.ts'),
-            formats: ['es'],
-            fileName: () => 'index.esm.js',
+            formats: ['es', 'cjs'],
+            fileName: (format) => {
+                if (format === 'es') return 'index.esm.js'
+                if (format === 'cjs') return 'index.cjs.js'
+                return 'index.js'
+            },
         },
 
         rollupOptions: {

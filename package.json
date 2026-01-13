@@ -6,7 +6,7 @@
     "scripts": {
         "dev2": "pnpm -F demo-vue2 dev",
         "dev3": "pnpm -F demo-vue3 dev",
-        "build:watch1": "pnpm -F @shenjipo/mention-editor run build:watch",
+        "build:watch": "pnpm -F @shenjipo/mention-editor run build:watch",
         "build:watch2": "pnpm -F @shenjipo/mention-vue2 build:watch",
         "build:watch3": "pnpm -F @shenjipo/mention-vue3 build:watch",
         "build": "pnpm -F @shenjipo/mention-editor run build && pnpm -F @shenjipo/mention-vue2 build && pnpm -F @shenjipo/mention-vue3 build",

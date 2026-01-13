@@ -8,6 +8,7 @@ import { Transaction } from 'prosemirror-state'
 import { SuggestionMenuProseMirrorPlugin } from './extensions/SuggestionMenu/SuggestionPlugin'
 import { MentionBlock } from './blocks/MentionBlock'
 import { type MentionItem } from './extensions/SuggestionMenu/types'
+import { InsertMentionBlock } from './api/InsertMentionBlock'
 
 export interface MentionEditorOptions {
     element: HTMLElement
@@ -64,15 +65,16 @@ export default class MEditor {
     }
 
     public inserMentionBlock(item: MentionItem) {
-        this._tiptapEditor
-            .chain()
-            .focus()
-            .insertContent({
-                type: 'mention',
-                attrs: item
-            })
-            .insertContent(' ')
-            .run()
+        InsertMentionBlock(this, item)
+        // this._tiptapEditor
+        //     .chain()
+        //     .focus()
+        //     .insertContent({
+        //         type: 'mention',
+        //         attrs: item
+        //     })
+        //     .insertContent(' ')
+        //     .run()
     }
 
     public get isEditable(): boolean {

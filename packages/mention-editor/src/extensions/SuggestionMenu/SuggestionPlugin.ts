@@ -51,12 +51,12 @@ class SuggestionMenuView {
         const prev: SuggestionPluginState = suggestionMenuPluginKey.getState(prevState)
         const next: SuggestionPluginState = suggestionMenuPluginKey.getState(view.state)
 
-        // See how the state changed
+       
         const started = prev === undefined && next !== undefined
         const stopped = prev !== undefined && next === undefined
         const changed = prev !== undefined && next !== undefined
 
-        // Cancel when suggestion isn't active
+       
         if (!started && !changed && !stopped) {
             return
         }
@@ -226,7 +226,6 @@ export class SuggestionMenuProseMirrorPlugin extends EventEmitter<any> {
                     return false
                 },
 
-                // Setup decorator on the currently active suggestion.
                 decorations(state) {
                     const suggestionPluginState: SuggestionPluginState = (this as Plugin).getState(state)
 
@@ -234,8 +233,7 @@ export class SuggestionMenuProseMirrorPlugin extends EventEmitter<any> {
                         return null
                     }
 
-                    // If the menu was opened programmatically by another extension, it may not use a trigger character. In this
-                    // case, the decoration is set on the whole block instead, as the decoration range would otherwise be empty.
+                    
                     if (!suggestionPluginState.deleteTriggerCharacter) {
                         const blockNode = findBlock(state.selection)
                         if (blockNode) {
@@ -248,7 +246,7 @@ export class SuggestionMenuProseMirrorPlugin extends EventEmitter<any> {
                             ])
                         }
                     }
-                    // Creates an inline decoration around the trigger character.
+                  
                     return DecorationSet.create(state.doc, [
                         Decoration.inline(
                             suggestionPluginState.queryStartPos! - suggestionPluginState.triggerCharacter!.length,
@@ -269,7 +267,7 @@ export class SuggestionMenuProseMirrorPlugin extends EventEmitter<any> {
         if (!this.triggerCharacters.includes(triggerCharacter)) {
             this.addTriggerCharacter(triggerCharacter)
         }
-        // TODO: be able to remove the triggerCharacter
+        
         return this.on(`update ${triggerCharacter}`, callback)
     }
 
@@ -277,7 +275,7 @@ export class SuggestionMenuProseMirrorPlugin extends EventEmitter<any> {
         this.triggerCharacters.push(triggerCharacter)
     }
 
-    // TODO: Should this be called automatically when listeners are removed?
+    
     removeTriggerCharacter = (triggerCharacter: string) => {
         this.triggerCharacters = this.triggerCharacters.filter(c => c !== triggerCharacter)
     }

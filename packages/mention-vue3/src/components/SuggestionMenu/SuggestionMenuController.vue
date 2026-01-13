@@ -84,7 +84,8 @@ const clearQuery = () => {
 }
 const emit = defineEmits(['itemClick'])
 const insertMention = (item: any) => {
-    editor!.value.suggestionMenus.insertMention(item)
+    editor!.value.inserMentionBlock(item)
+    // editor!.value.suggestionMenus.insertMention(item)
     emit('itemClick', item)
 }
 </script>

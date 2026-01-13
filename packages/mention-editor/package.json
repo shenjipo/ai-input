@@ -1,11 +1,13 @@
 {
     "name": "@shenjipo/mention-editor",
-    "version": "2.0.0",
-    "module": "dist/esm/index.mjs",
+    "version": "2.1.0",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
     "exports": {
         ".": {
-            "import": "./dist/esm/index.mjs",
-            "types": "./dist/esm/index.d.mts"
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.mts"
         }
     },
     "files": [
@@ -33,7 +35,6 @@
         "prosemirror-model": "^1.21.0",
         "prosemirror-view": "^1.33.7"
     },
-    "main": "index.js",
     "devDependencies": {},
     "description": ""
 }

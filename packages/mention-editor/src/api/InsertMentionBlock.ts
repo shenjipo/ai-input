@@ -6,13 +6,13 @@ export function InsertMentionBlock(
     item: { id: string; label: string }
 ) {
 
-    // editor._tiptapEditor.chain().insertContent({
-    //     type: 'mention',
-    //     attrs: {
-    //         id: item.id,
-    //         label: item.label,
-    //     }
-    // }).run()    
+    editor._tiptapEditor.chain().insertContent({
+        type: 'mention',
+        attrs: {
+            id: item.id,
+            label: item.label,
+        }
+    }).run()    
 
 }
 
