@@ -1,4 +1,6 @@
 examples/*
+demo-webpack
+
 # Logs
 logs
 *.log

@@ -1,10 +1,18 @@
 {
     "name": "@shenjipo/mention-vue2",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "main": "dist/index.cjs.js",
     "module": "dist/index.esm.js",
     "types": "dist/index.d.ts",
     "style": "dist/index.css",
+    "exports": {
+        ".": {
+            "import": "./dist/index.esm.js",
+            "require": "./dist/index.cjs.js",
+            "types": "./dist/index.d.ts"
+        },
+        "./dist/index.css": "./dist/index.css"
+    },
     "scripts": {
         "dev": "vite",
         "build": "vite build",

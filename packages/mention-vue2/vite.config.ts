@@ -20,9 +20,10 @@ export default defineConfig({
         extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
     },
     build: {
+        target: 'es2015',
         lib: {
             entry: path.resolve(__dirname, 'src/index.ts'),
-            formats: ['es', 'cjs'],
+            formats: ['cjs', 'es'],
             fileName: (format) => {
                 if (format === 'es') return 'index.esm.js'
                 if (format === 'cjs') return 'index.cjs.js'
@@ -37,6 +38,11 @@ export default defineConfig({
                 '@floating-ui/dom',
                 'vue-demi',
             ],
+            output: {
+                interop: 'compat',
+                // 给所有导出的模块加命名空间，webpack4能完美识别具名导出
+                preserveModules: false,
+            }
         },
         cssCodeSplit: true,            // 生成独立 css
         emptyOutDir: true,

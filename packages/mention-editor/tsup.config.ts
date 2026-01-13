@@ -7,7 +7,6 @@ export default defineConfig([
         ignoreWatch: ['**/*.md'],
         sourcemap: true,
         bundle: true,
-        // dts: false,
         dts: true,
         clean: true,
         minify: true,

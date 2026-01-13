@@ -5,7 +5,8 @@
 
             <template #header>
                 <div class="mention-header">
-                    <el-image v-for="image in files" :src="image.url" fit="cover" :preview-src-list="[image.url]">
+                    <el-image v-for="image in files" :src="image.url" :key="image.url" fit="cover"
+                        :preview-src-list="[image.url]">
 
                     </el-image>
                 </div>
