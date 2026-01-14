@@ -23,7 +23,7 @@ export default {
             }),
         },
     },
-    emits: ['update:modelValue', 'fileReject', 'imageInput'],
+    emits: ['input', 'fileReject', 'imageInput', 'deleteMention'],
     setup(props, { emit, expose }) {
         const editor = ref(null)
         const editorRef = ref(null)
@@ -36,15 +36,13 @@ export default {
                     element: editorRef.value,
                     placeholder: props.options.placeholder,
                     onChange: (val) => {
-                        emit('update:modelValue', val)
+                        emit('input', val)
                     },
-                    onFileReject: (file) => {
-                     
-                        emit('fileReject', file)
+                    onFileInput: (payload) => {
+                        emit('fileInput', payload)
                     },
-                    onImageInput: (payload) => {
-                        
-                        emit('imageInput', payload)
+                    onMentionDelete(item) {
+                        emit('deleteMention', item)
                     },
                 })
             }

@@ -38,7 +38,7 @@ const files = ref<Array<{
 }>>([])
 
 const handleClick = () => {
-   
+    console.log(inputValue.value)
 }
 
 const handleInsert = () => {

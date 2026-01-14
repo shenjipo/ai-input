@@ -2,34 +2,38 @@ import { Editor, Extension } from '@tiptap/core'
 import { baseExtensions } from './schema/base'
 import History from '@tiptap/extension-history'
 import Placeholder from '@tiptap/extension-placeholder'
-import { ImageInputPayload } from './extensions/ImageInput/types'
-import { ImageInputExtension } from './extensions/ImageInput/ImageInput'
+import { FileInputExtension } from './extensions/FileInput/FileInput'
 import { Transaction } from 'prosemirror-state'
 import { SuggestionMenuProseMirrorPlugin } from './extensions/SuggestionMenu/SuggestionPlugin'
 import { MentionBlock } from './blocks/MentionBlock'
 import { type MentionItem } from './extensions/SuggestionMenu/types'
 import { InsertMentionBlock } from './api/InsertMentionBlock'
+import { MentionDeletePlugin } from './extensions/MentionDeletePlugin/MentionDeletePlugin'
 
 export interface MentionEditorOptions {
     element: HTMLElement
     onChange: (text: string) => void
     placeholder?: string
-    onImageInput?: (payload: ImageInputPayload) => void
-    onFileReject?: (file: File) => void
+    onFileInput?: (file: File) => void
+    onMentionDelete: (item: MentionItem) => void
 }
 
 
 export default class MEditor {
     _tiptapEditor: Editor
     public readonly suggestionMenus: SuggestionMenuProseMirrorPlugin
+    public readonly mentionDeletePlugin: MentionDeletePlugin
 
     constructor(options: MentionEditorOptions) {
         this.suggestionMenus = new SuggestionMenuProseMirrorPlugin(this)
+        this.mentionDeletePlugin = new MentionDeletePlugin(this, options.onMentionDelete)
+
         const MEditorUIExtension = Extension.create({
             name: 'MEditorUIExtension',
             addProseMirrorPlugins: () => {
                 return [
                     this.suggestionMenus.plugin,
+                    this.mentionDeletePlugin.plugin,
                 ]
             },
         })
@@ -47,9 +51,8 @@ export default class MEditor {
                     placeholder: options.placeholder || '请输入...',
                     emptyEditorClass: 'is-editor-empty'
                 }),
-                ImageInputExtension.configure({
-                    onImageInput: options.onImageInput,
-                    onFileReject: options.onFileReject,
+                FileInputExtension.configure({
+                    onFileInput: options.onFileInput,
                 }),
                 MEditorUIExtension,
             ],
@@ -88,5 +91,22 @@ export default class MEditor {
     public clear() {
         this._tiptapEditor.commands.clearContent(true)
         this._tiptapEditor.commands.focus()
+    }
+
+    public getAllMentionBlocks(): Array<MentionItem> {
+        const mentions: Array<MentionItem> = []
+
+        const doc = this._tiptapEditor.state.doc
+
+        doc.descendants((node, pos) => {
+            if (node.type.name === 'mention') {
+                mentions.push({
+                    id: node.attrs.id ?? null,
+                    label: node.attrs.label ?? null,
+                })
+            }
+        })
+
+        return mentions
     }
 }

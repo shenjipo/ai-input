@@ -1,39 +1,19 @@
 import { Extension } from '@tiptap/core'
 import { Plugin } from 'prosemirror-state'
-import {
-    isImageFile,
-    fileToBase64,
-    getImageSize,
-} from '../../utils/file'
-import { ImageInputPayload, ImageInputOptions } from './types'
+import { FileInputOptions } from './types'
 
-
-
-export const ImageInputExtension = Extension.create<ImageInputOptions>({
+export const FileInputExtension = Extension.create<FileInputOptions>({
     name: 'imageInput',
 
     addOptions() {
         return {
-            onImageInput: undefined,
-            onFileReject: undefined,
+            onFileInput: undefined,
         }
     },
 
     addProseMirrorPlugins() {
         const handleFile = async (file: File) => {
-            if (!isImageFile(file)) {
-                this.options.onFileReject?.(file)
-                return
-            }
-
-            const base64 = await fileToBase64(file)
-            const size = await getImageSize(base64)
-
-            this.options.onImageInput?.({
-                file,
-                base64,
-                ...size,
-            })
+            this.options.onFileInput?.(file)
         }
 
         return [

@@ -33,7 +33,7 @@ export default class Test extends Vue {
     }
 
     handleClick() {
-
+        console.log(this.inputValue)
     }
 
     handleInsert() {
@@ -47,16 +47,15 @@ export default class Test extends Vue {
         this.$refs.editorRef.clear()
     }
 
-    handleFileChange(val: { file: File, base64: string }) {
-
-        this.files.push({
-            file: val.file,
-            url: val.base64,
-        })
+    handleFileChange(file: File) {
+        console.log('handleFileChange', file)
     }
 
-    handleFileReject(file: File) {
+    handleDeleteMention(item: any) {
+        console.log('handleDeleteMention', item)
+    }
 
-        Message.error(`暂不持支持 ${file.name} 的文件格式!`)
+    handleShowMention() {
+        console.log(this.$refs.editorRef.editor.getAllMentionBlocks())
     }
 }

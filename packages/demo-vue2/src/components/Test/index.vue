@@ -1,6 +1,7 @@
 <template>
     <div class="test">
-        <MEditorVue2 ref="editorRef" v-model="inputValue" @imageInput="handleFileChange" @fileReject="handleFileReject">
+        <MEditorVue2 ref="editorRef" v-model="inputValue" @fileInput="handleFileChange"
+            @deleteMention="handleDeleteMention">
             <SlashMention />
 
             <template #header>
@@ -17,6 +18,7 @@
                     <div class="footer-left">
                         <el-button type="primary" @click="handleClick">打印内容</el-button>
                         <el-button type="primary" @click="handleInsert">插入mention</el-button>
+                        <el-button type="primary" @click="handleShowMention">打印mention</el-button>
                         <el-button type="primary" @click="handleDelete">清空内容</el-button>
                     </div>
 

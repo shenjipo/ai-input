@@ -9,8 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import MEditor, { type ImageInputPayload } from '@shenjipo/mention-editor';
+import MEditor from '@shenjipo/mention-editor';
 import { ref, onMounted, provide, shallowRef } from 'vue';
+import { SuggestionItem } from './SuggestionMenu/types';
 
 const props = withDefaults(defineProps<
     {
@@ -30,8 +31,8 @@ const props = withDefaults(defineProps<
 
 const emit = defineEmits<{
     (e: 'update:modelValue', value: string): void
-    (e: 'fileReject', file: File): void
-    (e: 'imageInput', payload: ImageInputPayload): void
+    (e: 'fileInput', file: File): void
+    (e: 'deleteMention', item: SuggestionItem): void
 }>()
 
 
@@ -50,11 +51,11 @@ onMounted(() => {
                 // 监听编辑器内容变化，触发 v-model 更新
                 emit('update:modelValue', val)
             },
-            onFileReject: (file) => {
-                emit('fileReject', file)
+            onFileInput: (file) => {
+                emit('fileInput', file)
             },
-            onImageInput: (payload) => {
-                emit('imageInput', payload)
+            onMentionDelete(item) {
+                emit('deleteMention', item)
             },
         })
     }
