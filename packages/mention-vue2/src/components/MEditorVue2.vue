@@ -15,7 +15,7 @@ import { ref, onMounted, provide } from 'vue-demi'
 export default {
     name: 'MEditorVue2',
     props: {
-        modelValue: { type: String, default: '' },
+        value: { type: String, default: '' },
         options: {
             type: Object,
             default: () => ({
@@ -34,6 +34,7 @@ export default {
             if (editorRef.value) {
                 editor.value = new MEditor({
                     element: editorRef.value,
+                    content: props.value,
                     placeholder: props.options.placeholder,
                     onChange: (val) => {
                         emit('input', val)

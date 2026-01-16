@@ -13,7 +13,7 @@ import type { MEditorVue2Type } from "@shenjipo/mention-vue2/types"
 })
 export default class Test extends Vue {
 
-    inputValue = ''
+    inputValue = 'aaaa'
     placeholder = '发消息或输入 / 选择技能'
     files: Array<{
         file: File,
@@ -25,7 +25,7 @@ export default class Test extends Vue {
 
 
     mounted() {
-        this.$refs.editorRef.clear()
+        
     }
 
     created() {

@@ -15,7 +15,8 @@ export interface MentionEditorOptions {
     onChange: (text: string) => void
     placeholder?: string
     onFileInput?: (file: File) => void
-    onMentionDelete: (item: MentionItem) => void
+    content?: string
+    onMentionDelete?: (item: MentionItem) => void
 }
 
 
@@ -40,6 +41,7 @@ export default class MEditor {
 
         this._tiptapEditor = new Editor({
             element: options.element,
+            content: options.content || '',
             extensions: [
                 ...baseExtensions,
                 History.configure({

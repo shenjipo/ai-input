@@ -29,7 +29,7 @@ import { type ImageInputPayload } from '@shenjipo/mention-editor';
 import "@shenjipo/mention-vue3/dist/index.css"
 import { ElMessage } from 'element-plus';
 
-const inputValue = ref('')
+const inputValue = ref('123fds')
 const mEditorVue3Ref = ref<Nullable<InstanceType<typeof MEditorVue3>>>(null)
 
 const files = ref<Array<{

@@ -46,6 +46,7 @@ onMounted(() => {
     if (editorRef.value) {
         editor.value = new MEditor({
             element: editorRef.value,
+            content: props.modelValue,
             placeholder: props.options.placeholder,
             onChange: (val: string) => {
                 // 监听编辑器内容变化，触发 v-model 更新
