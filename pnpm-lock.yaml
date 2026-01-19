@@ -115,6 +115,9 @@ importers:
       '@tiptap/extension-document':
         specifier: 2.7.1
         version: 2.7.1(@tiptap/core@2.7.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-hard-break':
+        specifier: 2.7.1
+        version: 2.7.1(@tiptap/core@2.7.1(@tiptap/pm@2.27.1))
       '@tiptap/extension-history':
         specifier: 2.7.1
         version: 2.7.1(@tiptap/core@2.7.1(@tiptap/pm@2.27.1))(@tiptap/pm@2.27.1)
@@ -1312,6 +1315,11 @@ packages:
 
   '@tiptap/extension-document@2.7.1':
     resolution: {integrity: sha512-9wp/rXv9uBnqfEoJ5l7Rdx50H3m5via2r6TDRUXffneckd4fZDsVi+WKJxlxCU0ABi1F6glEuZ95zln+mqx3Pw==}
+    peerDependencies:
+      '@tiptap/core': ^2.7.0
+
+  '@tiptap/extension-hard-break@2.7.1':
+    resolution: {integrity: sha512-zy7lK2d0tu6BagzqkBwp2cIXM2t/QbHiKap1roj9B+QafsF9Im9p92bEK6fJEw+qC/j0PucR668MYsfUU7d2gQ==}
     peerDependencies:
       '@tiptap/core': ^2.7.0
 
@@ -4436,6 +4444,10 @@ snapshots:
       '@tiptap/pm': 2.27.1
 
   '@tiptap/extension-document@2.7.1(@tiptap/core@2.7.1(@tiptap/pm@2.27.1))':
+    dependencies:
+      '@tiptap/core': 2.7.1(@tiptap/pm@2.27.1)
+
+  '@tiptap/extension-hard-break@2.7.1(@tiptap/core@2.7.1(@tiptap/pm@2.27.1))':
     dependencies:
       '@tiptap/core': 2.7.1(@tiptap/pm@2.27.1)
 

@@ -1,7 +1,7 @@
 <template>
     <div class="test">
         <MEditorVue2 ref="editorRef" v-model="inputValue" @fileInput="handleFileChange"
-            @deleteMention="handleDeleteMention">
+            @deleteMention="handleDeleteMention" @enter="handleEnter" :options="{ lineBreak: 'shift-enter' }">
             <SlashMention />
 
             <template #header>

@@ -20,10 +20,11 @@ export default {
             type: Object,
             default: () => ({
                 placeholder: '请输入内容，可粘贴图片到此处，按下/唤起快捷指令，',
+                lineBreak: 'enter',
             }),
         },
     },
-    emits: ['input', 'fileReject', 'imageInput', 'deleteMention'],
+    emits: ['input', 'fileReject', 'imageInput', 'deleteMention', 'enter'],
     setup(props, { emit, expose }) {
         const editor = ref(null)
         const editorRef = ref(null)
@@ -44,6 +45,10 @@ export default {
                     },
                     onMentionDelete(item) {
                         emit('deleteMention', item)
+                    },
+                    lineBreak: props.options.lineBreak,
+                    onEnter: () => {
+                        emit('enter')
                     },
                 })
             }

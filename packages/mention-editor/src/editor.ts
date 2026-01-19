@@ -9,6 +9,7 @@ import { MentionBlock } from './blocks/MentionBlock'
 import { type MentionItem } from './extensions/SuggestionMenu/types'
 import { InsertMentionBlock } from './api/InsertMentionBlock'
 import { MentionDeletePlugin } from './extensions/MentionDeletePlugin/MentionDeletePlugin'
+import { ShiftEnterPlugin } from './extensions/ShiftEnterPlugin/ShiftEnterPlugin'
 
 export interface MentionEditorOptions {
     element: HTMLElement
@@ -17,6 +18,8 @@ export interface MentionEditorOptions {
     onFileInput?: (file: File) => void
     content?: string
     onMentionDelete?: (item: MentionItem) => void
+    onEnter?: () => void
+    lineBreak?: 'shift-enter' | 'enter'
 }
 
 
@@ -24,18 +27,28 @@ export default class MEditor {
     _tiptapEditor: Editor
     public readonly suggestionMenus: SuggestionMenuProseMirrorPlugin
     public readonly mentionDeletePlugin: MentionDeletePlugin
+    public readonly shiftEnterPlugin: ShiftEnterPlugin
 
     constructor(options: MentionEditorOptions) {
         this.suggestionMenus = new SuggestionMenuProseMirrorPlugin(this)
         this.mentionDeletePlugin = new MentionDeletePlugin(this, options.onMentionDelete)
 
+        if (options.lineBreak === 'shift-enter') {
+            this.shiftEnterPlugin = new ShiftEnterPlugin(this, options.onEnter)
+        }
+
         const MEditorUIExtension = Extension.create({
             name: 'MEditorUIExtension',
             addProseMirrorPlugins: () => {
-                return [
+                const plugins = [
                     this.suggestionMenus.plugin,
-                    this.mentionDeletePlugin.plugin,
+                    this.mentionDeletePlugin.plugin
                 ]
+
+                if (this.shiftEnterPlugin) {
+                    plugins.unshift(this.shiftEnterPlugin.plugin)
+                }
+                return plugins
             },
         })
 

@@ -1,6 +1,6 @@
 <template>
     <MEditorVue3 class="editor" ref="mEditorVue3Ref" v-model="inputValue" @file-reject="handleFielRejcet"
-        @image-input="handleImagePaste">
+        @image-input="handleImagePaste" @enter="handleEnter" :options="{ lineBreak: 'shift-enter' }">
 
         <template #header>
             <div class="mention-header">
@@ -61,6 +61,10 @@ const handleImagePaste = (val: ImageInputPayload) => {
         file: val.file,
         url: val.base64,
     })
+}
+
+const handleEnter = () => {
+    console.log('enter事件')
 }
 </script>
 

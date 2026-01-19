@@ -25,7 +25,7 @@ export default class Test extends Vue {
 
 
     mounted() {
-        
+
     }
 
     created() {
@@ -57,5 +57,9 @@ export default class Test extends Vue {
 
     handleShowMention() {
         console.log(this.$refs.editorRef.editor.getAllMentionBlocks())
+    }
+
+    handleEnter() {
+        console.log('enter事件')
     }
 }

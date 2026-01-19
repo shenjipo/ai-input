@@ -17,14 +17,16 @@ const props = withDefaults(defineProps<
     {
         modelValue: string,
         options?: Partial<{
-            placeholder: string
+            placeholder: string,
+            lineBreak: 'enter' | 'shift-enter'
         }>
     }
 
 >(), {
     options: () => {
         return {
-            placeholder: '请输入内容，可粘贴图片到此处，按下/唤起快捷指令，'
+            placeholder: '请输入内容，可粘贴图片到此处，按下/唤起快捷指令，',
+            lineBreak: 'enter',
         }
     }
 })
@@ -33,6 +35,7 @@ const emit = defineEmits<{
     (e: 'update:modelValue', value: string): void
     (e: 'fileInput', file: File): void
     (e: 'deleteMention', item: SuggestionItem): void
+    (e: 'enter'): void
 }>()
 
 
@@ -57,6 +60,10 @@ onMounted(() => {
             },
             onMentionDelete(item) {
                 emit('deleteMention', item)
+            },
+            lineBreak: props.options.lineBreak,
+            onEnter: () => {
+                emit('enter')
             },
         })
     }
